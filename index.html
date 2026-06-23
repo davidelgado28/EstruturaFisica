@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Física: Referência Completa do Ensino Médio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <style>
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #f1f1f1; }
+      ::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: #d97706; }
+      .transition-all { transition: all 0.3s ease; }
+      .formula-block {
+        font-family: "Courier New", monospace;
+        background-color: #fff7ed;
+        color: #78350f;
+        border-radius: 8px;
+        padding: 1rem;
+        border-left: 5px solid #f59e0b;
+        overflow-x: auto;
+        margin: 1rem 0;
+      }
+      .example-block {
+        background-color: #fefce8;
+        border-left: 5px solid #eab308;
+        border-radius: 8px;
+        padding: 1rem;
+        margin: 1rem 0;
+      }
+      .keyword  { color: #b45309; }
+      .type     { color: #854d0e; }
+      .string   { color: #c2410f; }
+      .comment  { color: #854d0e; font-style: italic; }
+      .function { color: #9a3412; }
+      .builtin  { color: #b45309; }
+      .pp       { color: #9a3412; } 
+      .number   { color: #854d0e; }
+      .dropdown-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+      .dropdown-content.open { max-height: 500px; }
+      .content-section { display: none; }
+      .content-section.active { display: block; }
+      .physics-card {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .physics-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgb(245 158 11 / 0.1), 0 4px 6px -4px rgb(245 158 11 / 0.1);
+      }
+      .nav-link.active {
+        background-color: #fed7aa;
+        font-weight: 700;
+        color: #9a3412;
+      }
+      .katex { font-size: 1.05em; }
+      .katex-display-math { display: block; text-align: center; margin: 0.5rem 0; font-size: 1.1em; }
+      .formula-block .katex-display-math { font-size: 1.15em; }
+    </style>
+  </head>
+  <body class="bg-amber-50 font-sans">
+
+    <header class="bg-orange-600 text-white shadow-lg">
+      <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
+        <div class="flex items-center justify-between w-full md:w-auto mb-4 md:mb-0">
+          <div class="flex items-center">
+            <i class="fas fa-atom text-3xl mr-3"></i>
+            <h1 class="text-2xl font-bold">Física: Referência do Ensino Médio</h1>
+          </div>
+          <button id="mobile-menu-btn" class="md:hidden text-white text-2xl focus:outline-none" title="Abrir sumário">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+        
+        <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 w-full md:w-auto">
+          <div class="relative w-full sm:w-72">
+            <input type="text" placeholder="Pesquisar"
+              class="px-4 py-2 rounded-full bg-orange-500 text-white placeholder-orange-200 focus:outline-none focus:ring-2 focus:ring-orange-300 w-full" />
+            <button class="absolute right-3 top-2 text-orange-200 hover:text-white">
+              <i class="fas fa-search"></i>
+            </button>
+            <div id="search-results"
+              class="absolute left-0 mt-2 w-full bg-white border border-orange-200 rounded shadow-lg z-50 hidden text-gray-800"></div>
+          </div>
+          <a href="#" onclick="window.location.reload()" class="inline-flex items-center px-3 py-2 bg-white text-orange-600 rounded-full shadow-sm hover:bg-orange-100 transition-all shrink-0" title="Recarregar página">
+            <i class="fas fa-home mr-2"></i>
+            Início
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1">
+      <div class="flex flex-1 container mx-auto px-4 py-8">
+
+        <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden transition-opacity"></div>
+
+        <div id="sidebar" class="w-72 shrink-0 bg-white rounded-r-lg md:rounded-lg shadow-md p-4 mr-0 md:mr-8 fixed md:sticky top-0 md:top-8 left-0 h-screen md:h-fit z-50 md:z-0 transform -translate-x-full md:translate-x-0 transition-transform duration-300 overflow-y-auto md:overflow-visible">
+          <div class="p-4 border-b border-orange-200 flex justify-between items-center md:block md:p-0 md:border-none">
+            <h1 class="text-2xl font-bold md:mb-4 text-orange-700">Sumário</h1>
+            <button id="close-sidebar-btn" class="md:hidden text-gray-500 hover:text-orange-600 text-2xl focus:outline-none">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <nav class="space-y-1 mt-2">
+
+            <a href="#introducao" class="nav-link flex items-center block px-3 py-2.5 rounded hover:bg-orange-100 text-orange-700 font-medium transition-all"
+              data-section="introducao" data-explanation="Introdução à Física do Ensino Médio, grandezas, unidades e método científico.">
+              <i class="fas fa-play mr-3 w-5 text-center"></i>
+              <span>Introdução à Física</span>
+            </a>
+
+            <a href="#" class="nav-link flex items-center block px-3 py-2.5 rounded hover:bg-orange-100 text-orange-700 font-medium transition-all"
+              data-section="cinematica" data-explanation="Cinemática: estudo do movimento sem considerar suas causas. MRU, MRUV, queda livre e lançamento.">
+              <i class="fas fa-running mr-3 w-5 text-center"></i>
+              <span>Cinemática</span>
+            </a>
+
+            <a href="#" class="nav-link flex items-center block px-3 py-2.5 rounded hover:bg-orange-100 text-orange-700 font-medium transition-all"
+              data-section="dinamica" data-explanation="Dinâmica: estudo das causas do movimento. Leis de Newton, forças e aplicações.">
+              <i class="fas fa-fist-raised mr-3 w-5 text-center"></i>
+              <span>Dinâmica</span>
+            </a>
+
+            <a href="#" class="nav-link flex items-center block px-3 py-2.5 rounded hover:bg-orange-100 text-orange-700 font-medium transition-all"
+              data-section="estatica" data-explanation="Estática: condições de equilíbrio de corpos. Forças, torques e alavancas.">
+              <i class="fas fa-balance-scale mr-3 w-5 text-center"></i>
+              <span>Estática</span>
+            </a>
+
+            <a href="#" class="nav-link flex items-center block px-3 py-2.5 rounded hover:bg-orange-100 text-orange-700 font-medium transition-all"
+              data-section="hidrostatica" data-explanation="Hidrostática: fluidos em repouso. Pressão, princípio de Pascal e Arquimedes.">
+              <i class="fas fa-tint mr-3 w-5 text-center"></i>
+              <span>Hidrostática</span>
+            </a>
+
+            <a href="#" class="nav-link flex items-center block px-3 py-2.5 rounded hover:bg-orange-100 text-orange-700 font-medium transition-all"
+              data-section="hidrodinamica" data-explanation="Hidrodinâmica: fluidos em movimento. Vazão, continuidade e equação de Bernoulli.">
+              <i class="fas fa-water mr-3 w-5 text-center"></i>
+              <span>Hidrodinâmica</span>
+            </a>
+
+            <a href="#" class="nav-link flex items-center block px-3 py-2.5 rounded hover:bg-orange-100 text-orange-700 font-medium transition-all"
+              data-section="termologia" data-explanation="Termologia: calor, temperatura, dilatação e gases ideais.">
+              <i class="fas fa-thermometer-half mr-3 w-5 text-center"></i>
+              <span>Termologia</span>
+            </a>
+
+            <a href="#" class="nav-link flex items-center block px-3 py-2.5 rounded hover:bg-orange-100 text-orange-700 font-medium transition-all"
+              data-section="optica" data-explanation="Óptica Geométrica: reflexão, refração, espelhos e lentes.">
+              <i class="fas fa-lightbulb mr-3 w-5 text-center"></i>
+              <span>Óptica Geométrica</span>
+            </a>
+
+            <a href="#" class="nav-link flex items-center block px-3 py-2.5 rounded hover:bg-orange-100 text-orange-700 font-medium transition-all"
+              data-section="ondulatoria" data-explanation="Ondulatória: propriedades das ondas, som e fenômenos ondulatórios.">
+              <i class="fas fa-wave-square mr-3 w-5 text-center"></i>
+              <span>Ondulatória</span>
+            </a>
+
+            <a href="#" class="nav-link flex items-center block px-3 py-2.5 rounded hover:bg-orange-100 text-orange-700 font-medium transition-all"
+              data-section="eletrostatica" data-explanation="Eletrostática: cargas elétricas, lei de Coulomb, campo e potencial elétrico.">
+              <i class="fas fa-bolt mr-3 w-5 text-center"></i>
+              <span>Eletrostática</span>
+            </a>
+
+            <a href="#" class="nav-link flex items-center block px-3 py-2.5 rounded hover:bg-orange-100 text-orange-700 font-medium transition-all"
+              data-section="eletrodinamica" data-explanation="Eletrodinâmica: corrente elétrica, leis de Ohm, circuitos e potência.">
+              <i class="fas fa-plug mr-3 w-5 text-center"></i>
+              <span>Eletrodinâmica</span>
+            </a>
+
+            <a href="#" class="nav-link flex items-center block px-3 py-2.5 rounded hover:bg-orange-100 text-orange-700 font-medium transition-all"
+              data-section="eletromagnetismo" data-explanation="Eletromagnetismo: campo magnético, força magnética e indução eletromagnética.">
+              <i class="fas fa-magnet mr-3 w-5 text-center"></i>
+              <span>Eletromagnetismo</span>
+            </a>
+
+            <div class="mt-6 pt-4 border-t border-orange-200">
+              <h3 class="font-bold mb-2 px-3 text-orange-700">Recursos Úteis</h3>
+              <ul class="space-y-1 text-sm">
+                <li>
+                  <a href="#" class="nav-link flex items-center px-3 py-1.5 text-orange-600 hover:bg-orange-100 rounded" data-section="recursos" data-explanation="Links e recomendações de estudo para Física do Ensino Médio.">
+                    <i class="fas fa-book-open mr-2 text-xs"></i>Leitura e Exercícios
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+
+        <div id="content" class="flex flex-col flex-1 min-w-0">
+          <div id="explanation" class="w-full"></div>
+
+          <footer class="mt-12 border-t border-orange-200 pt-8 text-center text-gray-600 text-sm">
+            <p>© 2026 Física: Referência Completa do Ensino Médio. Material educacional.</p>
+            <p class="mt-1">Todos os direitos reservados.</p>
+            <p class="mt-2 font-semibold text-orange-700">Criado por David Delgado</p>
+            <div class="flex justify-center space-x-4 mt-4">
+              <a href="https://github.com/" target="_blank" class="text-orange-600 hover:text-orange-800">
+                <i class="fab fa-github"></i> GitHub
+              </a>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </main>
+
+    <template id="tpl-introducao">
+      <div class="bg-white rounded-2xl shadow-md p-8 mb-6">
+        <div class="flex items-center mb-6">
+          <div class="mr-4">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="32" cy="32" r="28" fill="#fef3c7" stroke="#f59e0b" stroke-width="3"/>
+              <circle cx="32" cy="32" r="12" fill="#f59e0b"/>
+              <circle cx="20" cy="20" r="4" fill="#d97706"/>
+              <circle cx="44" cy="44" r="4" fill="#d97706"/>
+              <path d="M24 24 L40 40" stroke="#b45309" stroke-width="2" stroke-linecap="round"/>
+              <path d="M40 24 L24 40" stroke="#b45309" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h2 class="text-3xl font-bold text-orange-800">Introdução à Física no Ensino Médio</h2>
+        </div>
+        
+        <p class="text-gray-700 mb-4 text-lg">A Física é a ciência que estuda os fenômenos naturais do universo, desde o movimento dos corpos até as interações elétricas e magnéticas. No Ensino Médio, ela é fundamental para desenvolver o raciocínio lógico, a capacidade de resolver problemas e compreender o mundo ao nosso redor.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          <div class="physics-card bg-orange-50 border border-orange-200 rounded-xl p-5">
+            <h3 class="font-bold text-orange-700 mb-3 flex items-center"><i class="fas fa-ruler-combined mr-2"></i> Grandezas Físicas e Unidades</h3>
+            <p class="text-gray-700">Toda grandeza física é expressa por um número e uma unidade. No Sistema Internacional (SI), as unidades fundamentais são: metro (m) para comprimento, quilograma (kg) para massa, segundo (s) para tempo, ampere (A) para corrente elétrica, kelvin (K) para temperatura termodinâmica, mol (mol) para quantidade de matéria e candela (cd) para intensidade luminosa.</p>
+            <p class="mt-2 text-sm text-orange-600">Exemplo: a velocidade de 72 km/h equivale a 20 m/s (divida por 3,6).</p>
+          </div>
+          
+          <div class="physics-card bg-orange-50 border border-orange-200 rounded-xl p-5">
+            <h3 class="font-bold text-orange-700 mb-3 flex items-center"><i class="fas fa-flask mr-2"></i> Método Científico</h3>
+            <p class="text-gray-700">A Física utiliza o método científico: observação do fenômeno, formulação de hipóteses, experimentação controlada, análise de dados e conclusão. Os resultados devem ser reproduzíveis e falseáveis. Leis físicas são descrições matemáticas de padrões observados na natureza.</p>
+          </div>
+        </div>
+
+        <div class="mt-6 bg-white border border-orange-200 rounded-xl p-6">
+          <h3 class="font-bold text-orange-700 mb-4">Notação Científica e Algarismos Significativos</h3>
+          <p class="text-gray-700 mb-3">Números muito grandes ou pequenos são escritos em notação científica: a × 10ⁿ, onde 1 ≤ a < 10. Algarismos significativos indicam a precisão da medida. Regras: zeros entre algarismos não nulos são significativos; zeros à esquerda não são; zeros à direita em números decimais são significativos.</p>
+          
+          <div class="formula-block">
+            <strong>Exemplo de cálculo:</strong><br>
+            A distância da Terra ao Sol é aproximadamente 149.600.000 km.<br>
+            Em notação científica: <strong>1,496 × 10⁸ km</strong>.<br>
+            Se a medição tem 4 algarismos significativos, escrevemos 1,496 × 10⁸ km.
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template id="tpl-cinematica">
+      <div class="bg-white rounded-2xl shadow-md p-8 mb-6">
+        <div class="flex items-center mb-6">
+          <div class="mr-4">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="8" y="40" width="48" height="12" rx="2" fill="#fed7aa" stroke="#f59e0b" stroke-width="2"/>
+              <circle cx="18" cy="52" r="5" fill="#f59e0b"/>
+              <circle cx="46" cy="52" r="5" fill="#f59e0b"/>
+              <path d="M12 30 L52 30" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4 2"/>
+              <path d="M20 22 L44 22" stroke="#d97706" stroke-width="3" stroke-linecap="round"/>
+              <polygon points="44,18 52,22 44,26" fill="#d97706"/>
+              <text x="32" y="16" text-anchor="middle" fill="#9a3412" font-size="10" font-weight="bold">v = 20 m/s</text>
+            </svg>
+          </div>
+          <h2 class="text-3xl font-bold text-orange-800">Cinemática</h2>
+        </div>
+        
+        <p class="text-gray-700 mb-6">A Cinemática é o ramo da Física que descreve o movimento dos corpos sem analisar as forças que o causam. Estudamos posição, velocidade, aceleração e tempo. As grandezas são vetoriais (possuem módulo, direção e sentido), mas em uma dimensão usamos sinais para indicar sentido.</p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="physics-card border border-orange-200 rounded-xl p-6 bg-orange-50">
+            <h3 class="text-xl font-bold text-orange-700 mb-3">Movimento Retilíneo Uniforme (MRU)</h3>
+            <p class="text-gray-700 mb-4">No MRU a velocidade é constante. Não há aceleração. O corpo percorre distâncias iguais em intervalos de tempo iguais.</p>
+            
+            <div class="formula-block">
+              <div class="katex-display-math">v = \dfrac{\Delta s}{\Delta t}</div>
+              <div class="katex-display-math">s = s_0 + v \cdot t</div>
+            </div>
+            
+            <div class="example-block">
+              <strong>Exemplo resolvido:</strong><br>
+              Um carro viaja a 90 km/h constante. Qual distância percorre em 2,5 horas?<br>
+              Converter: <span class="katex-math">v = \dfrac{90}{3{,}6} = 25 \text{ m/s}</span>.<br>
+              Usando <span class="katex-math">s = s_0 + v \cdot t</span>: s = 0 + 25 × (2,5 × 3600) = <strong>225.000 metros = 225 km</strong>.<br>
+              Ou diretamente: s = v × t = 90 km/h × 2,5 h = 225 km.
+            </div>
+          </div>
+
+          <div class="physics-card border border-orange-200 rounded-xl p-6 bg-orange-50">
+            <h3 class="text-xl font-bold text-orange-700 mb-3">Movimento Retilíneo Uniformemente Variado (MRUV)</h3>
+            <p class="text-gray-700 mb-4">Aceleração constante. Velocidade varia linearmente com o tempo. Usado para descrever quedas, frenagens e lançamentos.</p>
+            
+            <div class="formula-block">
+              <div class="katex-display-math">v = v_0 + a \cdot t</div>
+              <div class="katex-display-math">s = s_0 + v_0 t + \dfrac{1}{2} a t^2</div>
+              <div class="katex-display-math">v^2 = v_0^2 + 2a \,\Delta s</div>
+            </div>
+            
+            <div class="example-block">
+              <strong>Exemplo resolvido:</strong><br>
+              Um trem parte do repouso (v₀ = 0) com aceleração de 0,8 m/s². Qual sua velocidade após percorrer 200 m?<br>
+              Usando a equação de Torricelli <span class="katex-math">v^2 = v_0^2 + 2a\,\Delta s</span>: v² = 0 + 2 × 0,8 × 200 = 320<br>
+              v = √320 ≈ <strong>17,89 m/s</strong> (cerca de 64,4 km/h).
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 physics-card border border-orange-200 rounded-xl p-6 bg-white">
+          <h3 class="text-xl font-bold text-orange-700 mb-4">Queda Livre e Lançamento Oblíquo</h3>
+          <p class="text-gray-700 mb-4">Na queda livre, a única força é a gravidade (desprezando resistência do ar). Aceleração constante g ≈ 9,8 m/s² (ou 10 m/s² para simplificar cálculos).</p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <div class="formula-block">
+                <div class="katex-display-math">v = g \cdot t</div>
+                <div class="katex-display-math">h = \dfrac{1}{2}\, g\, t^2</div>
+              </div>
+              <p class="text-sm text-gray-600">Para queda livre de altura h.</p>
+            </div>
+            <div class="example-block">
+              <strong>Exemplo:</strong> Uma pedra é solta de uma torre de 45 m de altura. Quanto tempo leva para chegar ao solo?<br>
+              Usando a fórmula <span class="katex-math">h = \dfrac{1}{2}\,g\,t^2</span>: 45 = ½ × 9,8 × t² → t² ≈ 9,18 → t ≈ <strong>3,03 segundos</strong>.
+            </div>
+          </div>
+          
+          <p class="mt-4 text-gray-700">No lançamento oblíquo, o movimento é decomposto em horizontal (MRU) e vertical (MRUV). O alcance máximo ocorre em 45° e a altura máxima em 90° (vertical).</p>
+        </div>
+      </div>
+    </template>
+
+    <template id="tpl-dinamica">
+      <div class="bg-white rounded-2xl shadow-md p-8 mb-6">
+        <div class="flex items-center mb-6">
+          <div class="mr-4">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="32" cy="20" r="8" fill="#fed7aa" stroke="#f59e0b" stroke-width="2"/>
+              <path d="M20 36 L44 36" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+              <path d="M24 44 L40 44" stroke="#d97706" stroke-width="3"/>
+              <path d="M28 52 L36 52" stroke="#b45309" stroke-width="2"/>
+              <path d="M32 28 L32 36" stroke="#9a3412" stroke-width="2" stroke-dasharray="2 2"/>
+            </svg>
+          </div>
+          <h2 class="text-3xl font-bold text-orange-800">Dinâmica</h2>
+        </div>
+        
+        <p class="text-gray-700 mb-6">A Dinâmica estuda as causas do movimento, ou seja, as forças que atuam sobre os corpos. Isaac Newton formulou as três leis fundamentais que explicam o comportamento dos corpos sob ação de forças.</p>
+
+        <div class="space-y-6">
+          <div class="physics-card border-l-4 border-orange-500 bg-orange-50 p-6 rounded-r-xl">
+            <h3 class="font-bold text-xl text-orange-700 mb-2">1ª Lei de Newton (Lei da Inércia)</h3>
+            <p class="text-gray-700">Todo corpo permanece em repouso ou em movimento retilíneo uniforme, a menos que seja obrigado a mudar seu estado por forças externas. A inércia é a resistência que um corpo oferece à mudança de seu estado de movimento.</p>
+            <div class="example-block mt-3">
+              <strong>Exemplo:</strong> Quando um ônibus freia bruscamente, os passageiros são lançados para frente porque seus corpos tendem a continuar em movimento (inércia).
+            </div>
+          </div>
+
+          <div class="physics-card border-l-4 border-orange-500 bg-orange-50 p-6 rounded-r-xl">
+            <h3 class="font-bold text-xl text-orange-700 mb-2">2ª Lei de Newton (Princípio Fundamental da Dinâmica)</h3>
+            <p class="text-gray-700">A força resultante que atua sobre um corpo é igual ao produto de sua massa pela aceleração adquirida. A direção da aceleração é a mesma da força resultante.</p>
+            
+            <div class="formula-block">
+              <div class="katex-display-math">\vec{F}_{\text{res}} = m \cdot \vec{a}</div>
+              <span class="text-sm">Unidades: Força em newton (N), massa em kg, aceleração em m/s². 1 N = 1 kg·m/s²</span>
+            </div>
+            
+            <div class="example-block">
+              <strong>Exemplo resolvido:</strong><br>
+              Uma caixa de 12 kg é puxada por uma força horizontal de 36 N sobre uma superfície sem atrito. Qual a aceleração?<br>
+              Usando <span class="katex-math">F = m \cdot a</span>: 36 = 12 × a → a = <strong>3 m/s²</strong>.
+            </div>
+          </div>
+
+          <div class="physics-card border-l-4 border-orange-500 bg-orange-50 p-6 rounded-r-xl">
+            <h3 class="font-bold text-xl text-orange-700 mb-2">3ª Lei de Newton (Lei da Ação e Reação)</h3>
+            <p class="text-gray-700">Para toda ação existe uma reação de mesma intensidade, mesma direção e sentido oposto. As forças de ação e reação atuam em corpos diferentes.</p>
+            <div class="example-block mt-3">
+              <strong>Exemplo:</strong> Quando você empurra uma parede, a parede empurra você com força igual e oposta. Um foguete sobe porque expulsa gases para baixo (ação), recebendo reação para cima.
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 bg-white border border-orange-200 rounded-xl p-6">
+          <h3 class="font-bold text-orange-700 mb-3">Força Peso, Normal e Atrito</h3>
+          <p class="text-gray-700">Peso (P = m g) é a força gravitacional. Força normal (N) é perpendicular à superfície. Força de atrito (f = μ N) se opõe ao movimento relativo entre superfícies.</p>
+          <div class="formula-block">
+            <div class="katex-display-math">f_{\text{atrito}} \leq \mu \cdot N \quad \text{(atrito estático)}</div>
+            <div class="katex-display-math">f_{\text{atrito}} = \mu \cdot N \quad \text{(atrito cinético)}</div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template id="tpl-estatica">
+      <div class="bg-white rounded-2xl shadow-md p-8 mb-6">
+        <div class="flex items-center mb-6">
+          <div class="mr-4">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="12" y="28" width="40" height="8" rx="1" fill="#fed7aa" stroke="#f59e0b" stroke-width="2"/>
+              <circle cx="16" cy="48" r="6" fill="#f59e0b"/>
+              <circle cx="48" cy="48" r="6" fill="#f59e0b"/>
+              <path d="M20 20 L32 8 L44 20" stroke="#d97706" stroke-width="3" fill="none"/>
+              <circle cx="32" cy="32" r="3" fill="#9a3412"/>
+            </svg>
+          </div>
+          <h2 class="text-3xl font-bold text-orange-800">Estática</h2>
+        </div>
+        
+        <p class="text-gray-700 mb-6">A Estática estuda os corpos em equilíbrio, ou seja, quando a velocidade é zero ou constante (sem aceleração). Para o equilíbrio, a soma vetorial de todas as forças e de todos os torques deve ser nula.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="physics-card bg-orange-50 border border-orange-200 rounded-xl p-6">
+            <h3 class="font-bold text-orange-700 mb-3">Condições de Equilíbrio</h3>
+            <div class="formula-block">
+              <div class="katex-display-math">\sum \vec{F} = 0 \quad \text{(equilíbrio de translação)}</div>
+              <div class="katex-display-math">\sum \vec{\tau} = 0 \quad \text{(equilíbrio de rotação)}</div>
+            </div>
+            <p class="text-sm text-gray-600 mt-2"><span class="katex-math">\tau</span> (torque) = <span class="katex-math">F \times d</span> (braço de alavanca), com sinal de acordo com o sentido de rotação.</p>
+          </div>
+          
+          <div class="physics-card bg-orange-50 border border-orange-200 rounded-xl p-6">
+            <h3 class="font-bold text-orange-700 mb-3">Tipos de Equilíbrio</h3>
+            <ul class="text-gray-700 space-y-1">
+              <li><strong>Estável:</strong> corpo volta à posição original após pequeno deslocamento (ex: bola no fundo de uma tigela).</li>
+              <li><strong>Instável:</strong> qualquer pequeno deslocamento afasta o corpo (ex: bola no topo de uma colina).</li>
+              <li><strong>Indiferente:</strong> corpo permanece em qualquer posição (ex: esfera sobre superfície plana).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-6 physics-card border border-orange-200 rounded-xl p-6">
+          <h3 class="font-bold text-orange-700 mb-4">Alavancas e Máquinas Simples</h3>
+          <p class="text-gray-700 mb-3">Alavanca é uma barra rígida que gira em torno de um ponto fixo (fulcro). Existem três tipos conforme a posição do fulcro, esforço e resistência.</p>
+          
+          <div class="example-block">
+            <strong>Exemplo resolvido:</strong><br>
+            Uma alavanca de 1,2 m tem fulcro a 0,3 m de uma extremidade. Qual força é necessária para equilibrar um peso de 80 N na extremidade mais distante?<br>
+            Braço da resistência = 0,9 m; braço do esforço = 0,3 m.<br>
+            Usando o princípio da alavanca <span class="katex-math">F \cdot d_{\text{esforço}} = R \cdot d_{\text{res}}</span>: F × 0,3 = 80 × 0,9 → F = <strong>240 N</strong> (vantagem mecânica = 3).
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template id="tpl-hidrostatica">
+      <div class="bg-white rounded-2xl shadow-md p-8 mb-6">
+        <div class="flex items-center mb-6">
+          <div class="mr-4">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 52 Q32 20 52 52" fill="#bae6fd" stroke="#0ea5e9" stroke-width="3"/>
+              <rect x="20" y="40" width="24" height="12" fill="#7dd3fc" stroke="#0369a1" stroke-width="2"/>
+              <circle cx="26" cy="46" r="3" fill="#0369a1"/>
+              <circle cx="38" cy="46" r="3" fill="#0369a1"/>
+            </svg>
+          </div>
+          <h2 class="text-3xl font-bold text-orange-800">Hidrostática</h2>
+        </div>
+        
+        <p class="text-gray-700 mb-6">A Hidrostática estuda os fluidos (líquidos e gases) em repouso. Conceitos fundamentais são pressão, densidade e empuxo.</p>
+
+        <div class="space-y-6">
+          <div class="physics-card bg-orange-50 border border-orange-200 rounded-xl p-6">
+            <h3 class="font-bold text-orange-700 mb-3">Pressão em Fluidos</h3>
+            <p class="text-gray-700">Pressão é a força por unidade de área. Em fluidos em repouso, a pressão é transmitida igualmente em todas as direções (Princípio de Pascal).</p>
+            <div class="formula-block">
+              <div class="katex-display-math">P = \dfrac{F}{A}</div>
+              <div class="katex-display-math">P = P_0 + \rho\, g\, h \quad \text{(pressão hidrostática)}</div>
+            </div>
+            <div class="example-block">
+              <strong>Exemplo:</strong> Qual a pressão exercida por uma coluna de água de 5 m de altura? (ρ_água = 1000 kg/m³, g = 9,8 m/s²)<br>
+              Usando <span class="katex-math">P = \rho\, g\, h</span>: P = 1000 × 9,8 × 5 = <strong>49.000 Pa = 49 kPa</strong> (além da pressão atmosférica).
+            </div>
+          </div>
+
+          <div class="physics-card bg-orange-50 border border-orange-200 rounded-xl p-6">
+            <h3 class="font-bold text-orange-700 mb-3">Princípio de Arquimedes</h3>
+            <p class="text-gray-700">Todo corpo imerso em um fluido sofre uma força vertical para cima (empuxo) igual ao peso do fluido deslocado pelo corpo.</p>
+            <div class="formula-block">
+              <div class="katex-display-math">E = \rho_{\text{fluido}} \cdot V_{\text{deslocado}} \cdot g</div>
+            </div>
+            <div class="example-block">
+              <strong>Exemplo resolvido:</strong> Um objeto de 2,5 kg e volume 0,0012 m³ é colocado na água. O objeto flutua ou afunda?<br>
+              Peso = 2,5 × 9,8 = 24,5 N<br>
+              Empuxo usando <span class="katex-math">E = \rho_{\text{fluido}} \cdot V \cdot g</span> = 1000 × 0,0012 × 9,8 = 11,76 N<br>
+              Como Peso > Empuxo, o objeto <strong>afunda</strong>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template id="tpl-hidrodinamica">
+      <div class="bg-white rounded-2xl shadow-md p-8 mb-6">
+        <div class="flex items-center mb-6">
+          <div class="mr-4">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 32 Q20 20 32 32 Q44 44 56 32" fill="none" stroke="#0ea5e9" stroke-width="4" stroke-linecap="round"/>
+              <path d="M8 40 Q20 28 32 40 Q44 52 56 40" fill="none" stroke="#7dd3fc" stroke-width="3"/>
+              <circle cx="32" cy="32" r="5" fill="#0369a1"/>
+            </svg>
+          </div>
+          <h2 class="text-3xl font-bold text-orange-800">Hidrodinâmica</h2>
+        </div>
+        
+        <p class="text-gray-700 mb-6">A Hidrodinâmica analisa os fluidos em movimento. Dois princípios fundamentais são a equação de continuidade e a equação de Bernoulli.</p>
+
+        <div class="physics-card bg-orange-50 border border-orange-200 rounded-xl p-6 mb-6">
+          <h3 class="font-bold text-orange-700 mb-3">Equação de Continuidade</h3>
+          <p class="text-gray-700">Em um fluido incompressível que flui em um tubo, a vazão (volume por tempo) é constante. Quando a área diminui, a velocidade aumenta.</p>
+          <div class="formula-block">
+            <div class="katex-display-math">Q = A_1\, v_1 = A_2\, v_2</div>
+            <span class="text-sm"><span class="katex-math">Q</span> = vazão (m³/s), <span class="katex-math">A</span> = área da seção transversal (m²), <span class="katex-math">v</span> = velocidade (m/s)</span>
+          </div>
+        </div>
+
+        <div class="physics-card bg-orange-50 border border-orange-200 rounded-xl p-6">
+          <h3 class="font-bold text-orange-700 mb-3">Equação de Bernoulli</h3>
+          <p class="text-gray-700">Ao longo de uma linha de corrente, a soma da pressão, da energia potencial gravitacional por volume e da energia cinética por volume permanece constante (conservação de energia para fluidos ideais).</p>
+          <div class="formula-block">
+            <div class="katex-display-math">P + \rho\, g\, h + \dfrac{1}{2}\,\rho\, v^2 = \text{constante}</div>
+          </div>
+          <div class="example-block">
+            <strong>Aplicação:</strong> As asas de avião geram sustentação porque o ar flui mais rápido na parte superior (menor pressão) do que na inferior, criando força para cima.
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template id="tpl-termologia">
+      <div class="bg-white rounded-2xl shadow-md p-8 mb-6">
+        <div class="flex items-center mb-6">
+          <div class="mr-4">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="22" y="8" width="20" height="40" rx="10" fill="#fed7aa" stroke="#f59e0b" stroke-width="3"/>
+              <rect x="26" y="14" width="12" height="28" rx="6" fill="#f59e0b"/>
+              <path d="M32 52 L32 60" stroke="#9a3412" stroke-width="3"/>
+              <circle cx="32" cy="60" r="4" fill="#d97706"/>
+            </svg>
+          </div>
+          <h2 class="text-3xl font-bold text-orange-800">Termologia</h2>
+        </div>
+        
+        <p class="text-gray-700 mb-6">A Termologia estuda os fenômenos relacionados ao calor e à temperatura. Inclui dilatação térmica, calorimetria e comportamento dos gases.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="physics-card bg-orange-50 border border-orange-200 rounded-xl p-6">
+            <h3 class="font-bold text-orange-700 mb-3">Dilatação Térmica</h3>
+            <p class="text-gray-700">Os corpos aumentam de tamanho quando aquecidos. A dilatação linear é a mais comum em barras e trilhos.</p>
+            <div class="formula-block">
+              <div class="katex-display-math">\Delta L = L_0 \cdot \alpha \cdot \Delta T</div>
+              <span class="text-sm"><span class="katex-math">\alpha</span> = coeficiente de dilatação linear (°C⁻¹)</span>
+            </div>
+            <div class="example-block">
+              <strong>Exemplo:</strong> Um trilho de trem de 12 m a 20°C. Qual o aumento de comprimento a 45°C? (α = 12 × 10⁻⁶ /°C)<br>
+              Usando <span class="katex-math">\Delta L = L_0 \cdot \alpha \cdot \Delta T</span>: <span class="katex-math">\Delta L</span> = 12 × 12×10⁻⁶ × 25 = <strong>0,0036 m = 3,6 mm</strong>.
+            </div>
+          </div>
+
+          <div class="physics-card bg-orange-50 border border-orange-200 rounded-xl p-6">
+            <h3 class="font-bold text-orange-700 mb-3">Calorimetria</h3>
+            <p class="text-gray-700">Calor sensível muda temperatura; calor latente muda estado físico sem mudar temperatura.</p>
+            <div class="formula-block">
+              <div class="katex-display-math">Q = m \cdot c \cdot \Delta T \quad \text{(calor sensível)}</div>
+              <div class="katex-display-math">Q = m \cdot L \quad \text{(calor latente)}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 physics-card border border-orange-200 rounded-xl p-6">
+          <h3 class="font-bold text-orange-700 mb-3">Gases Ideais</h3>
+          <p class="text-gray-700">Um gás ideal obedece à equação de estado que relaciona pressão, volume, temperatura e quantidade de matéria.</p>
+          <div class="formula-block">
+            <div class="katex-display-math">PV = nRT</div>
+            <span class="text-sm"><span class="katex-math">R</span> = 0,082 atm·L/(mol·K) ou 8,314 J/(mol·K)</span>
+          </div>
+          <div class="example-block">
+            <strong>Exemplo:</strong> Quantos mols de gás existem em 22,4 L a 0°C e 1 atm?<br>
+            n = PV / RT = (1 × 22,4) / (0,082 × 273) ≈ <strong>1 mol</strong> (volume molar padrão).
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template id="tpl-optica">
+      <div class="bg-white rounded-2xl shadow-md p-8 mb-6">
+        <div class="flex items-center mb-6">
+          <div class="mr-4">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="32" r="10" fill="#fefce8" stroke="#f59e0b" stroke-width="2"/>
+              <path d="M30 22 L50 32 L30 42" fill="none" stroke="#f59e0b" stroke-width="3"/>
+              <path d="M50 32 L58 28 M50 32 L58 36" stroke="#d97706" stroke-width="2"/>
+              <circle cx="44" cy="32" r="3" fill="#b45309"/>
+            </svg>
+          </div>
+          <h2 class="text-3xl font-bold text-orange-800">Óptica Geométrica</h2>
+        </div>
+        
+        <p class="text-gray-700 mb-6">A Óptica Geométrica trata da propagação da luz em linha reta e os fenômenos de reflexão e refração. Ignora a natureza ondulatória da luz.</p>
+
+        <div class="space-y-6">
+          <div class="physics-card bg-orange-50 border border-orange-200 rounded-xl p-6">
+            <h3 class="font-bold text-orange-700 mb-3">Leis da Reflexão e Refração</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <p class="font-semibold text-orange-600">Reflexão:</p>
+                <p class="text-gray-700">Ângulo de incidência = ângulo de reflexão. O raio incidente, o normal e o raio refletido estão no mesmo plano.</p>
+              </div>
+              <div>
+                <p class="font-semibold text-orange-600">Refração (Lei de Snell):</p>
+                <div class="formula-block">
+                  <div class="katex-display-math">n_1 \sin i = n_2 \sin r</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="physics-card bg-orange-50 border border-orange-200 rounded-xl p-6">
+            <h3 class="font-bold text-orange-700 mb-3">Espelhos e Lentes</h3>
+            <div class="formula-block">
+              <div class="katex-display-math">\dfrac{1}{f} = \dfrac{1}{p} + \dfrac{1}{p'} \quad \text{(equação dos espelhos/lentes)}</div>
+              <div class="katex-display-math">A = -\dfrac{p'}{p} \quad \text{(aumento linear)}</div>
+            </div>
+            <div class="example-block">
+              <strong>Exemplo:</strong> Um objeto de 4 cm está a 30 cm de um espelho côncavo de foco 10 cm. Onde se forma a imagem e qual seu tamanho?<br>
+              1/10 = 1/30 + 1/p' → p' = 15 cm (imagem real, invertida).<br>
+              A = -15/30 = -0,5 → altura da imagem = 4 × 0,5 = <strong>2 cm</strong>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template id="tpl-ondulatoria">
+      <div class="bg-white rounded-2xl shadow-md p-8 mb-6">
+        <div class="flex items-center mb-6">
+          <div class="mr-4">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 32 Q16 16 24 32 Q32 48 40 32 Q48 16 56 32" fill="none" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="16" cy="32" r="4" fill="#fed7aa"/>
+              <circle cx="32" cy="32" r="4" fill="#fed7aa"/>
+              <circle cx="48" cy="32" r="4" fill="#fed7aa"/>
+            </svg>
+          </div>
+          <h2 class="text-3xl font-bold text-orange-800">Ondulatória</h2>
+        </div>
+        
+        <p class="text-gray-700 mb-6">A Ondulatória estuda as ondas, perturbações que se propagam transportando energia sem transportar matéria. Inclui ondas mecânicas (som) e eletromagnéticas (luz).</p>
+
+        <div class="physics-card bg-orange-50 border border-orange-200 rounded-xl p-6 mb-6">
+          <h3 class="font-bold text-orange-700 mb-3">Características das Ondas</h3>
+          <div class="formula-block">
+            <div class="katex-display-math">v = \lambda \cdot f \quad \text{(velocidade de propagação)}</div>
+            <div class="katex-display-math">T = \dfrac{1}{f} \quad \text{(período)}</div>
+          </div>
+          <p class="text-sm text-gray-600 mt-2"><span class="katex-math">\lambda</span> = comprimento de onda, <span class="katex-math">f</span> = frequência, <span class="katex-math">T</span> = período, <span class="katex-math">v</span> = velocidade.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="physics-card bg-orange-50 border border-orange-200 rounded-xl p-6">
+            <h3 class="font-bold text-orange-700 mb-3">Som</h3>
+            <p class="text-gray-700">O som é uma onda mecânica longitudinal que precisa de meio material para se propagar. Velocidade no ar ≈ 340 m/s a 20°C. A intensidade sonora é medida em decibéis (dB).</p>
+            <div class="example-block">
+              <strong>Exemplo:</strong> Qual o comprimento de onda de um som de 440 Hz (lá central) no ar?<br>
+              λ = v / f = 340 / 440 ≈ <strong>0,773 m</strong>.
+            </div>
+          </div>
+          
+          <div class="physics-card bg-orange-50 border border-orange-200 rounded-xl p-6">
+            <h3 class="font-bold text-orange-700 mb-3">Fenômenos Ondulatórios</h3>
+            <ul class="text-gray-700 space-y-2">
+              <li><strong>Reflexão:</strong> onda volta ao meio original (eco).</li>
+              <li><strong>Refração:</strong> mudança de velocidade ao mudar de meio.</li>
+              <li><strong>Difração:</strong> contorno de obstáculos.</li>
+              <li><strong>Interferência:</strong> sobreposição de ondas (construtiva ou destrutiva).</li>
+              <li><strong>Ressonância:</strong> vibração em frequência natural.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template id="tpl-eletrostatica">
+      <div class="bg-white rounded-2xl shadow-md p-8 mb-6">
+        <div class="flex items-center mb-6">
+          <div class="mr-4">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="24" r="10" fill="#fed7aa" stroke="#f59e0b" stroke-width="2"/>
+              <text x="20" y="28" text-anchor="middle" fill="#9a3412" font-size="12" font-weight="bold">+</text>
+              <circle cx="44" cy="40" r="10" fill="#bae6fd" stroke="#0ea5e9" stroke-width="2"/>
+              <text x="44" y="44" text-anchor="middle" fill="#0369a1" font-size="12" font-weight="bold">−</text>
+              <path d="M28 30 L36 36" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3 2"/>
+            </svg>
+          </div>
+          <h2 class="text-3xl font-bold text-orange-800">Eletrostática</h2>
+        </div>
+        
+        <p class="text-gray-700 mb-6">A Eletrostática estuda as cargas elétricas em repouso e as forças entre elas. A carga elétrica é quantizada e conservada.</p>
+
+        <div class="physics-card bg-orange-50 border border-orange-200 rounded-xl p-6 mb-6">
+          <h3 class="font-bold text-orange-700 mb-3">Lei de Coulomb</h3>
+          <p class="text-gray-700">A força elétrica entre duas cargas puntiformes é proporcional ao produto das cargas e inversamente proporcional ao quadrado da distância entre elas.</p>
+          <div class="formula-block">
+            <div class="katex-display-math">F = k\,\dfrac{|q_1\, q_2|}{r^2}</div>
+            <span class="text-sm"><span class="katex-math">k</span> = 9 × 10⁹ N·m²/C² (constante eletrostática)</span>
+          </div>
+          <div class="example-block">
+            <strong>Exemplo resolvido:</strong><br>
+            Duas cargas de +3 μC e −2 μC estão separadas por 0,5 m. Qual a força entre elas?<br>
+            F = 9×10⁹ × (3×10⁻⁶ × 2×10⁻⁶) / (0,5)² = 9×10⁹ × 6×10⁻¹² / 0,25 = <strong>0,216 N</strong> (atração).
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="physics-card bg-orange-50 border border-orange-200 rounded-xl p-6">
+            <h3 class="font-bold text-orange-700 mb-3">Campo Elétrico</h3>
+            <div class="formula-block">
+              <div class="katex-display-math">\vec{E} = \dfrac{\vec{F}}{q}</div>
+              <div class="katex-display-math">E = k\,\dfrac{q}{r^2}</div>
+            </div>
+          </div>
+          <div class="physics-card bg-orange-50 border border-orange-200 rounded-xl p-6">
+            <h3 class="font-bold text-orange-700 mb-3">Potencial Elétrico</h3>
+            <div class="formula-block">
+              <div class="katex-display-math">V = k\,\dfrac{q}{r}</div>
+              <span class="text-sm">Unidade: volt (V). 1 V = 1 J/C</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template id="tpl-eletrodinamica">
+      <div class="bg-white rounded-2xl shadow-md p-8 mb-6">
+        <div class="flex items-center mb-6">
+          <div class="mr-4">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 20 L52 20" stroke="#f59e0b" stroke-width="3"/>
+              <path d="M12 32 L52 32" stroke="#f59e0b" stroke-width="3"/>
+              <path d="M12 44 L52 44" stroke="#f59e0b" stroke-width="3"/>
+              <circle cx="20" cy="20" r="4" fill="#d97706"/>
+              <circle cx="44" cy="32" r="4" fill="#d97706"/>
+              <circle cx="20" cy="44" r="4" fill="#d97706"/>
+            </svg>
+          </div>
+          <h2 class="text-3xl font-bold text-orange-800">Eletrodinâmica</h2>
+        </div>
+        
+        <p class="text-gray-700 mb-6">A Eletrodinâmica estuda as cargas elétricas em movimento, ou seja, a corrente elétrica e seus efeitos.</p>
+
+        <div class="physics-card bg-orange-50 border border-orange-200 rounded-xl p-6 mb-6">
+          <h3 class="font-bold text-orange-700 mb-3">Corrente Elétrica e Lei de Ohm</h3>
+          <p class="text-gray-700">Corrente elétrica é o fluxo ordenado de cargas. Em um condutor ôhmico, a corrente é proporcional à diferença de potencial.</p>
+          <div class="formula-block">
+            <div class="katex-display-math">I = \dfrac{\Delta Q}{\Delta t}</div>
+            <div class="katex-display-math">V = R \cdot I \quad \Longleftrightarrow \quad R = \dfrac{V}{I}</div>
+          </div>
+          <div class="example-block">
+            <strong>Exemplo:</strong> Um resistor de 15 Ω é ligado a uma bateria de 9 V. Qual a corrente que passa por ele?<br>
+            I = V / R = 9 / 15 = <strong>0,6 A</strong>.
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="physics-card bg-orange-50 border border-orange-200 rounded-xl p-6">
+            <h3 class="font-bold text-orange-700 mb-3">Resistência Elétrica</h3>
+            <div class="formula-block">
+              <div class="katex-display-math">R = \rho\,\dfrac{L}{A}</div>
+              <span class="text-sm"><span class="katex-math">\rho</span> = resistividade do material (Ω·m)</span>
+            </div>
+          </div>
+          <div class="physics-card bg-orange-50 border border-orange-200 rounded-xl p-6">
+            <h3 class="font-bold text-orange-700 mb-3">Potência Elétrica</h3>
+            <div class="formula-block">
+              <div class="katex-display-math">P = V \cdot I = I^2 R = \dfrac{V^2}{R}</div>
+              <span class="text-sm">Unidade: watt (W). 1 kWh = 3,6 × 10⁶ J</span>
+            </div>
+            <div class="example-block mt-2">
+              <strong>Exemplo:</strong> Um chuveiro de 4.500 W ligado em 220 V consome quanta energia em 15 minutos?<br>
+              Energia = P × t = 4500 × (15/60) = <strong>1.125 Wh = 1,125 kWh</strong>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template id="tpl-eletromagnetismo">
+      <div class="bg-white rounded-2xl shadow-md p-8 mb-6">
+        <div class="flex items-center mb-6">
+          <div class="mr-4">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="12" y="20" width="40" height="24" rx="3" fill="#fed7aa" stroke="#f59e0b" stroke-width="2"/>
+              <path d="M20 26 L20 38 M28 26 L28 38 M36 26 L36 38 M44 26 L44 38" stroke="#d97706" stroke-width="2"/>
+              <path d="M8 32 L12 32" stroke="#9a3412" stroke-width="2"/>
+              <path d="M52 32 L56 32" stroke="#9a3412" stroke-width="2"/>
+              <circle cx="8" cy="32" r="3" fill="#b45309"/>
+              <circle cx="56" cy="32" r="3" fill="#b45309"/>
+            </svg>
+          </div>
+          <h2 class="text-3xl font-bold text-orange-800">Eletromagnetismo</h2>
+        </div>
+        
+        <p class="text-gray-700 mb-6">O Eletromagnetismo unifica os fenômenos elétricos e magnéticos. Uma corrente elétrica produz campo magnético, e um campo magnético variável pode induzir corrente elétrica.</p>
+
+        <div class="space-y-6">
+          <div class="physics-card bg-orange-50 border border-orange-200 rounded-xl p-6">
+            <h3 class="font-bold text-orange-700 mb-3">Campo Magnético de uma Corrente</h3>
+            <p class="text-gray-700">Uma corrente elétrica que passa por um condutor gera um campo magnético ao seu redor. A direção é dada pela regra da mão direita.</p>
+            <div class="formula-block">
+              <div class="katex-display-math">B = \dfrac{\mu_0\, I}{2\pi\, r} \quad \text{(campo de fio reto infinito)}</div>
+              <span class="text-sm"><span class="katex-math">\mu_0</span> = 4π × 10⁻⁷ T·m/A (permeabilidade magnética do vácuo)</span>
+            </div>
+          </div>
+
+          <div class="physics-card bg-orange-50 border border-orange-200 rounded-xl p-6">
+            <h3 class="font-bold text-orange-700 mb-3">Força Magnética sobre Carga em Movimento</h3>
+            <div class="formula-block">
+              <div class="katex-display-math">\vec{F} = q\,(\vec{v} \times \vec{B})</div>
+              <span class="text-sm">Módulo: <span class="katex-math">F = q\, v\, B \sin\theta</span></span>
+            </div>
+            <div class="example-block">
+              <strong>Exemplo:</strong> Um elétron (q = 1,6 × 10⁻¹⁹ C) entra perpendicularmente em um campo magnético de 0,5 T com velocidade 2 × 10⁶ m/s. Qual a força?<br>
+              F = 1,6×10⁻¹⁹ × 2×10⁶ × 0,5 × sin(90°) = <strong>1,6 × 10⁻¹³ N</strong>.
+            </div>
+          </div>
+
+          <div class="physics-card bg-orange-50 border border-orange-200 rounded-xl p-6">
+            <h3 class="font-bold text-orange-700 mb-3">Indução Eletromagnética (Faraday)</h3>
+            <p class="text-gray-700">Uma variação do fluxo magnético através de uma espira induz uma força eletromotriz (fem) e, consequentemente, uma corrente se o circuito estiver fechado.</p>
+            <div class="formula-block">
+              <div class="katex-display-math">\mathcal{E} = -\dfrac{d\Phi_B}{dt}</div>
+              <span class="text-sm"><span class="katex-math">\Phi_B</span> = fluxo magnético = <span class="katex-math">B \cdot A \cdot \cos\theta</span></span>
+            </div>
+            <p class="mt-2 text-sm text-gray-600">Este princípio é a base de geradores, transformadores e motores elétricos.</p>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template id="tpl-recursos">
+      <div class="bg-white rounded-2xl shadow-md p-8 mb-6">
+        <div class="flex items-center mb-6">
+          <i class="fas fa-book-open text-orange-600 text-3xl mr-4"></i>
+          <h2 class="text-3xl font-bold text-orange-800">Recursos e Recomendações de Estudo</h2>
+        </div>
+        
+        <div class="prose text-gray-700">
+          <p class="mb-4">A fim de aprofundar seus estudos em Física do Ensino Médio, recomendo:</p>
+          <ul class="list-disc pl-6 space-y-2">
+            <li>Resolver exercícios variados de vestibulares (ENEM, Fuvest, Unicamp, etc.) após estudar cada tópico.</li>
+            <li>Utilizar simuladores online como PhET (University of Colorado) para visualizar conceitos abstratos.</li>
+            <li>Realizar experimentos simples em casa ou na escola (pêndulo, circuitos elétricos básicos, refração com copo d'água).</li>
+            <li>Consultar livros didáticos oficiais do PNLD e videoaulas de canais educativos confiáveis.</li>
+            <li>Praticar a escrita de resoluções passo a passo, explicando cada fórmula utilizada.</li>
+          </ul>
+        </div>
+      </div>
+    </template>
+
+    <script>
+      function initializeTailwind() {
+        document.documentElement.style.setProperty('--accent-color', '#f59e0b');
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        initializeTailwind();
+
+        const templates = {};
+        document.querySelectorAll("template").forEach((t) => {
+          templates[t.id.replace("tpl-", "")] = t.innerHTML;
+        });
+
+        const contentDiv = document.getElementById("explanation");
+        const navLinks = document.querySelectorAll(".nav-link");
+        const searchInput = document.querySelector('input[type="text"]');
+        const searchResults = document.getElementById("search-results");
+
+        const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+        const closeSidebarBtn = document.getElementById("close-sidebar-btn");
+        const sidebar = document.getElementById("sidebar");
+        const sidebarOverlay = document.getElementById("sidebar-overlay");
+
+        function openSidebar() {
+          sidebar.classList.remove("-translate-x-full");
+          sidebarOverlay.classList.remove("hidden");
+          document.body.classList.add("overflow-hidden");
+        }
+
+        function closeSidebar() {
+          sidebar.classList.add("-translate-x-full");
+          sidebarOverlay.classList.add("hidden");
+          document.body.classList.remove("overflow-hidden");
+        }
+
+        if (mobileMenuBtn) mobileMenuBtn.addEventListener("click", openSidebar);
+        if (closeSidebarBtn) closeSidebarBtn.addEventListener("click", closeSidebar);
+        if (sidebarOverlay) sidebarOverlay.addEventListener("click", closeSidebar);
+
+        function renderAllMath(container) {
+          if (typeof katex === 'undefined') return;
+          container.querySelectorAll('.katex-math').forEach(el => {
+            if (el.dataset.rendered) return;
+            const mathContent = (el.textContent || el.innerText).trim();
+            try {
+              katex.render(mathContent, el, {
+                throwOnError: false,
+                displayMode: false,
+                strict: false
+              });
+              el.dataset.rendered = '1';
+            } catch (e) {
+              console.warn('KaTeX render error:', e);
+            }
+          });
+          container.querySelectorAll('.katex-display-math').forEach(el => {
+            if (el.dataset.rendered) return;
+            const mathContent = (el.textContent || el.innerText).trim();
+            try {
+              katex.render(mathContent, el, {
+                throwOnError: false,
+                displayMode: true,
+                strict: false
+              });
+              el.dataset.rendered = '1';
+            } catch (e) {
+              console.warn('KaTeX display render error:', e);
+            }
+          });
+        }
+
+        function loadSection(sectionId) {
+          if (templates[sectionId]) {
+            contentDiv.innerHTML = templates[sectionId];
+            
+            navLinks.forEach((link) => link.classList.remove("active", "bg-orange-100", "font-bold"));
+            
+            const activeLink = document.querySelector(`.nav-link[data-section="${sectionId}"]`);
+            if (activeLink) {
+              activeLink.classList.add("active", "bg-orange-100", "font-bold");
+            }
+            
+            setTimeout(() => {
+              renderAllMath(contentDiv);
+            }, 50);
+            
+            localStorage.setItem("activePhysicsSection", sectionId);
+          } else {
+            contentDiv.innerHTML = `<div class="bg-white rounded-2xl shadow p-8"><p class="text-orange-600">Seção não encontrada. Por favor, selecione um tópico no sumário.</p></div>`;
+          }
+        }
+
+        navLinks.forEach((link) => {
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+            const section = link.dataset.section;
+            loadSection(section);
+            if (window.innerWidth < 768) {
+              closeSidebar();
+            }
+          });
+        });
+
+        searchInput.addEventListener("input", (e) => {
+          const query = e.target.value.toLowerCase().trim();
+          searchResults.innerHTML = "";
+          
+          if (query.length > 1) {
+            let found = false;
+            navLinks.forEach((link) => {
+              const text = link.textContent.toLowerCase();
+              const explanation = (link.dataset.explanation || "").toLowerCase();
+              if (text.includes(query) || explanation.includes(query)) {
+                found = true;
+                const div = document.createElement("div");
+                div.className = "p-3 hover:bg-orange-100 cursor-pointer text-gray-800 border-b border-orange-100 last:border-b-0 flex items-center";
+                div.innerHTML = `
+                  <i class="fas fa-search text-orange-400 mr-3"></i>
+                  <span>${link.textContent}</span>
+                `;
+                div.addEventListener("click", () => {
+                  loadSection(link.dataset.section);
+                  searchResults.classList.add("hidden");
+                  searchInput.value = "";
+                  if (window.innerWidth < 768) closeSidebar();
+                });
+                searchResults.appendChild(div);
+              }
+            });
+            
+            if (found) {
+              searchResults.classList.remove("hidden");
+            } else {
+              const noResult = document.createElement("div");
+              noResult.className = "p-3 text-gray-500 text-sm";
+              noResult.textContent = "Nenhum resultado encontrado para esta busca.";
+              searchResults.appendChild(noResult);
+              searchResults.classList.remove("hidden");
+            }
+          } else {
+            searchResults.classList.add("hidden");
+          }
+        });
+
+        document.addEventListener("click", (e) => {
+          if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+            searchResults.classList.add("hidden");
+          }
+        });
+
+        const lastSection = localStorage.getItem("activePhysicsSection");
+        const sectionToLoad = lastSection && templates[lastSection] ? lastSection : "introducao";
+        
+        loadSection(sectionToLoad);
+        
+        document.addEventListener("keydown", function(e) {
+          if (e.key === "/" && document.activeElement.tagName === "BODY") {
+            e.preventDefault();
+            searchInput.focus();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
